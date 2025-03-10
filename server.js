@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Database initialization
-const db = new sqlite3.Database('./weather_data.db', (err) => {
+const db = new sqlite3.Database('./weather_data.sqlite', (err) => {
   if (err) {
     console.error('Error opening database', err);
   } else {
