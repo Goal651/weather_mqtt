@@ -7,7 +7,7 @@ This application collects temperature and humidity data from an MQTT broker, sto
 - 🌡️ Real-time temperature and humidity monitoring
 - 📊 Interactive charts showing 5-minute averages
 - 💾 SQLite database storage for historical data
-- 📱 Responsive design for desktop and mobile
+
 
 ## Setup Instructions
 
@@ -20,8 +20,8 @@ This application collects temperature and humidity data from an MQTT broker, sto
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mqtt-weather-app
-   cd mqtt-weather-app
+   git clone https://https://github.com/Goal651/weather_mqtt/
+   cd weather_mqtt
    ```
 
 2. Install dependencies:
@@ -46,19 +46,19 @@ This application collects temperature and humidity data from an MQTT broker, sto
 ## Project Structure
 
 ```
-mqtt-weather-app/
+mqtt-weather/
 ├── public/
 │   └── index.html       # Frontend interface with Chart.js visualization
 ├── server.js            # Express backend with API endpoints and SQLite logic
 ├── package.json         # Node.js dependencies
-├── weather_data.db      # SQLite database (created automatically)
+├── weather_data.sqlite  # SQLite database (created automatically)
 └── README.md            # Setup instructions
 ```
 
 ## How It Works
 
 1. The frontend connects to the MQTT broker and displays real-time temperature and humidity values
-2. Each MQTT message is sent to the backend and stored in the SQLite database
+2. Each MQTT broker data is sent to the backend and stored in the SQLite database
 3. Every 5 minutes, the backend calculates averages and stores them in a separate table
 4. The chart displays up to one hour of historical data (twelve 5-minute intervals)
 
@@ -72,7 +72,7 @@ mqtt-weather-app/
 ### Raw Data Table
 Stores every reading received from MQTT:
 ```sql
-CREATE TABLE raw_data (
+CREATE TABLE sensor_data (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   type TEXT NOT NULL,        -- 'temperature' or 'humidity'
   value REAL NOT NULL,       -- The actual reading
@@ -83,13 +83,10 @@ CREATE TABLE raw_data (
 ### Average Data Table
 Stores 5-minute averages:
 ```sql
-CREATE TABLE avg_data (
+CREATE TABLE sensor_avg_data (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   avg_temperature REAL,      -- 5-minute average temperature
   avg_humidity REAL,         -- 5-minute average humidity
   timestamp TEXT NOT NULL    -- ISO format timestamp
 );
-#### RUN THE FOLLOWING  TO THE TERMINAL 
 
-1.Navigate to the directory
-2.Run   node server.js   or   http://localhost:3000/"# Embeded" 
